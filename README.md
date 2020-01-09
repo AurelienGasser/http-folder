@@ -1,4 +1,4 @@
-HTTP Folder
+HTTP Folder [![npm version](https://badge.fury.io/js/http-folder.svg)](https://badge.fury.io/js/http-folder)
 ----
 
 A simple web server with file upload and download, written in Node.js
