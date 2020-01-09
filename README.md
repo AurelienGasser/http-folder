@@ -5,7 +5,7 @@ A simple web server with file upload and download, written in Node.js
 
 [![npm version](https://badge.fury.io/js/http-folder.svg)](https://badge.fury.io/js/http-folder)
 
-[![nodesource/node](http://dockeri.co/image/aureliengasser/http-folder)](https://registry.hub.docker.com/u/aureliengasser/http-folder/)
+[![nodesource/node](http://dockeri.co/image/aureliengasser/http-folder)](https://registry.hub.docker.com/r/aureliengasser/http-folder)
 
 ---
 
