@@ -20,7 +20,7 @@ npm install -g http-folder
 ```bash
 # Start the server
 $ mkdir files
-$ http-folder /tmp/data 4242 # or `HTTP_FOLDER_ROOT_DIR=/tmp/files HTTP_FOLDER_PORT=4242 http-folder`
+$ http-folder /tmp/data 4242
 Serving /tmp/files on port 4242
 # or HTTP_FOLDER_ROOT_DIR=/tmp/files HTTP_FOLDER_PORT=4242 http-folder
 
