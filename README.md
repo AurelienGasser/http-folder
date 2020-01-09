@@ -17,8 +17,6 @@ npm install -g http-folder
 
 ### Usage
 
-Start the server
-
 ```bash
 # Start the server
 $ mkdir files
