@@ -1,16 +1,19 @@
+HTTP Folder
+----
+
 A simple web server with file upload and download, written in Node.js
 
-**Dependencies**
+### Dependencies
 
 None
 
-**Installation**
+### Installation
 
 ```
 npm install -g http-folder
 ```
 
-**Usage**
+### Usage
 
 Start the server
 
@@ -42,3 +45,7 @@ $ curl -s http://localhost:4242/uploaded-file -o downloaded-file
 $ cat downloaded-file 
 some content
 ```
+
+### Acknowledgements
+
+Largely based on https://github.com/krvikash35/nodejs-download-upload-server
