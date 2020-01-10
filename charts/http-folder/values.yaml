@@ -1,0 +1,32 @@
+## Default values for http-folder.
+## This is a YAML-formatted file.
+## Declare variables to be passed into your templates.
+
+image:
+  repository: aureliengasser/http-folder
+  tag: 1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+  path: /
+  hosts:
+    - http-folder.local
+
+persistence:
+  enabled: true
+  annotations: {}  
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  storageClass: ""
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  # existingClaim: ""

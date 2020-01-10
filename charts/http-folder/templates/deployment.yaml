@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "http-folder.fullname" . }}
+  labels:
+{{ include "labels.standard" . | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "http-folder.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+{{ include "labels.standard" . | indent 8 }}
+    spec:
+      volumes:
+        - name: files-root-dir
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "http-folder.fullname" .) }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+      containers:
+        - name: http-folder
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - sh
+            - -c
+            - |
+              http-folder
+          env:
+            - name: HTTP_FOLDER_ROOT_DIR
+              value: "/files"
+            - name: HTTP_FOLDER_PORT
+              value: "80"
+          ports:
+            - name: http-port
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.service.port }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.service.port }}            
+          volumeMounts:
+            - name: files-root-dir
+              mountPath: /files
+          resources:
+

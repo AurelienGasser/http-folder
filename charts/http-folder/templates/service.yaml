@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "http-folder.fullname" . }}
+  labels:
+{{ include "labels.standard" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type | quote }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ include "http-folder.name" . }}
+    release: {{ .Release.Name }}
