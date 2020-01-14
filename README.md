@@ -7,6 +7,12 @@ A simple web server with file upload and download, written in Node.js
 
 [![nodesource/node](http://dockeri.co/image/aureliengasser/http-folder)](https://registry.hub.docker.com/r/aureliengasser/http-folder)
 
+### TL;DR
+
+- `POST /my-file` to upload a file
+- `GET /my-file` to download a file
+- `GET /` to list the files
+
 ### Dependencies
 
 None
