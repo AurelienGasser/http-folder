@@ -19,9 +19,13 @@ None
 
 ### Installation
 
+Install locally:
+
 ```
 npm install -g http-folder
 ```
+
+On kubernetes, you can use the [public helm repository](https://github.com/AurelienGasser/charts).
 
 ### Usage
 
