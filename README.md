@@ -1,4 +1,4 @@
-HTTP Folder 
+HTTP Folder
 ----
 
 A simple web server with file upload and download, written in Node.js
@@ -12,6 +12,8 @@ A simple web server with file upload and download, written in Node.js
 - `POST /my-file` to upload a file
 - `GET /my-file` to download a file
 - `GET /` to list the files
+
+There are no subfolders, only one root folder.
 
 ### Dependencies
 
@@ -37,13 +39,13 @@ Serving /tmp/files on port 4242
 # or HTTP_FOLDER_ROOT_DIR=/tmp/files HTTP_FOLDER_PORT=4242 http-folder
 
 # Upload
-$ cat original-file 
+$ cat original-file
 some content
 $ curl --data-binary "@original-file" http://localhost:4242/uploaded-file
 
 # Download
 $ curl -s http://localhost:4242/uploaded-file -o downloaded-file
-$ cat downloaded-file 
+$ cat downloaded-file
 some content
 ```
 
