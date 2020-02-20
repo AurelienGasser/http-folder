@@ -22,12 +22,15 @@ function requestHandler(req, res) {
     if (method == "POST") {
         return upload(req, res);
     }
+    if (method == "DELETE") {
+        return remove(req, res);
+    }
 
     return error(req, res, "Bad Request");
 }
 
 function error(req, res, message) {
-    res.writeHead(400, {'Content-Type': 'text/plain'});
+    res.writeHead(400, { 'Content-Type': 'text/plain' });
     res.write(message);
     res.end();
 }
@@ -39,7 +42,7 @@ function dir(req, res) {
             return error(req, res, err.message);
         }
 
-        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.writeHead(200, { 'Content-Type': 'application/json' });
         res.write(JSON.stringify(files));
         res.end();
     });
@@ -49,12 +52,12 @@ function download(req, res) {
     let file = path.join(ROOT_DIR, req.url);
     fs.readFile(file, (err, content) => {
         if (err) {
-            res.writeHead(404, {'Content-Type': 'text/plain'});
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
             res.write('File Not Found');
             res.end();
             return;
         }
-        res.writeHead(200, {'Content-Type': 'application/octet-stream'});
+        res.writeHead(200, { 'Content-Type': 'application/octet-stream' });
         res.write(content);
         res.end();
     });
@@ -64,8 +67,22 @@ function upload(req, res) {
     let file = path.join(ROOT_DIR, req.url);
     req.pipe(fs.createWriteStream(file));
     req.on('end', () => {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
         res.write('Uploaded succesfully');
         res.end();
     })
+}
+
+function remove(req, res) {
+    const file = path.join(ROOT_DIR, req.url);
+    fs.unlink(file, (err) => {
+        if (err) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.write('File Not Found');
+            res.end();
+            return;
+        }
+        res.writeHead(204, { 'Content-Type': 'text/plain' });
+        res.end();
+    });
 }
