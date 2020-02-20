@@ -33,8 +33,8 @@ On kubernetes, you can use the [public helm repository](https://github.com/Aurel
 
 ```bash
 # Start the server
-$ mkdir files
-$ http-folder /tmp/data 4242
+$ mkdir /tmp/files
+$ http-folder /tmp/files 4242
 Serving /tmp/files on port 4242
 # or HTTP_FOLDER_ROOT_DIR=/tmp/files HTTP_FOLDER_PORT=4242 http-folder
 
@@ -42,6 +42,7 @@ Serving /tmp/files on port 4242
 $ cat original-file
 some content
 $ curl --data-binary "@original-file" http://localhost:4242/uploaded-file
+Uploaded succesfully$
 
 # Download
 $ curl -s http://localhost:4242/uploaded-file -o downloaded-file
