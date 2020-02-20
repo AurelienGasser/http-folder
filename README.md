@@ -11,6 +11,7 @@ A simple web server with file upload and download, written in Node.js
 
 - `POST /my-file` to upload a file
 - `GET /my-file` to download a file
+- `DELETE /my-file` to delete a file
 - `GET /` to list the files
 
 There are no subfolders, only one root folder.
@@ -48,6 +49,10 @@ Uploaded succesfully$
 $ curl -s http://localhost:4242/uploaded-file -o downloaded-file
 $ cat downloaded-file
 some content
+
+# Delete
+$ curl -XDELETE http://localhost:4242/uploaded-file
+Deleted successfully$
 ```
 
 ### Acknowledgements
