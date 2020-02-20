@@ -49,6 +49,11 @@ $ cat downloaded-file
 some content
 ```
 
+# Delete
+
+$ curl -XDELETE http://localhost:4242/uploaded-file
+
+
 ### Acknowledgements
 
 Largely based on https://github.com/krvikash35/nodejs-download-upload-server

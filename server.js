@@ -23,7 +23,7 @@ function requestHandler(req, res) {
         return upload(req, res);
     }
     if (method == "DELETE") {
-        return remove(req, res);
+        return delete_(req, res);
     }
 
     return error(req, res, "Bad Request");
@@ -73,7 +73,7 @@ function upload(req, res) {
     })
 }
 
-function remove(req, res) {
+function delete_(req, res) {
     const file = path.join(ROOT_DIR, req.url);
     fs.unlink(file, (err) => {
         if (err) {
@@ -82,7 +82,8 @@ function remove(req, res) {
             res.end();
             return;
         }
-        res.writeHead(204, { 'Content-Type': 'text/plain' });
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.write('Deleted succesfully');
         res.end();
     });
 }
